@@ -40,7 +40,7 @@ services:
     ports:
       - target: 8000
         published: 8000
-    volumes:
+#    volumes:
 #      - type: bind
 #        source: ..
 #        target: /srv/coins
