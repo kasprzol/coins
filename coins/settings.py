@@ -136,3 +136,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+TASK_QUEUE_HOST = "queue"
+TASK_QUEUE_URL = f"redis://{TASK_QUEUE_HOST}/"
+TASK_RESULT_BACKEND = TASK_QUEUE_URL
+ALPHAVANTAGE_API_KEY = os.environ["alphavantage_api_key"]

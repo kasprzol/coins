@@ -8,4 +8,4 @@ python3 manage.py migrate
 
 pwd
 
-gunicorn -w 4 coins.wsgi:application
+gunicorn -b 0.0.0.0:8000 -w 4 coins.wsgi:application

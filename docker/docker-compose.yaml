@@ -37,6 +37,7 @@ services:
       - coins_db_user=foobar
       - coins_db_password=qwerty
       - coins_db_port=5432
+      - alphavantage_api_key=$alphavantage_api_key
     ports:
       - target: 8000
         published: 8000
@@ -45,25 +46,24 @@ services:
 #        source: ..
 #        target: /srv/coins
 
-#  worker:
-#    image: worker
-#    build:
-#      dockerfile: docker/Dockerfile-worker
-#      context: ..
-#    depends_on:
-#      - db
-#      - queue
-#      - scheduler
-#    environment:
-#      - deployment=production
-#      - coins_db_host=db
-#      - coins_db_name=coins_db
-#      - coins_db_user=foobar
-#      - coins_db_password=qwerty
-#      - coins_db_port=5432
+  worker:
+    image: worker
+    build:
+      dockerfile: docker/Dockerfile-worker
+      context: ..
+    depends_on:
+      - db
+      - queue
+    environment:
+      - deployment=production
+      - DJANGO_SETTINGS_MODULE=coins.settings
+      - coins_db_host=db
+      - coins_db_name=coins_db
+      - coins_db_user=foobar
+      - coins_db_password=qwerty
+      - coins_db_port=5432
+      - alphavantage_api_key=$alphavantage_api_key
 #    volumes:
 #      - type: bind
 #        source: ..
 #        target: /srv/coins
-#
-
