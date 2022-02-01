@@ -1,8 +1,9 @@
 repos:
   - repo: https://github.com/hadialqattan/pycln
-    rev: 0.0.1-beta.3
+    rev: v1.1.0
     hooks:
       - id: pycln
+        args: [--config=pyproject.toml]
   - repo: https://github.com/PyCQA/isort
     rev: 5.10.1
     hooks:

@@ -4,7 +4,7 @@ from unittest.mock import Mock, patch
 from django.test import TestCase, override_settings
 
 from CoinApp.models import ExchangeRate
-from CoinApp.tasks import ApiLimitReached, fetch_exchange_rate
+from CoinApp.tasks import ApiLimitReached, InvalidApiKey, fetch_exchange_rate
 
 
 @override_settings(ALPHAVANTAGE_API_KEY="qwerty")
@@ -36,6 +36,20 @@ class Test(TestCase):
         self.assertEqual(rate.from_currency, btc)
         self.assertEqual(rate.to_currency, usd)
         self.assertAlmostEqual(rate.rate, float(exchange_rate))
+
+    @patch("CoinApp.tasks.requests")
+    def test_fetch_exchange_rate_api_key_invalid(self, requests_mock):
+        mock_response = Mock()
+        mock_response.json.return_value = {
+            "Error Message": "the parameter apikey is invalid or missing. "
+            "Please claim your free API key on "
+            "(https://www.alphavantage.co/support/#api-key). "
+            "It should take less than 20 seconds."
+        }
+        requests_mock.get.return_value = mock_response
+        self.assertEqual(ExchangeRate.objects.count(), 0)
+        self.assertRaises(InvalidApiKey, fetch_exchange_rate)
+        self.assertEqual(ExchangeRate.objects.count(), 0)
 
     @patch("CoinApp.tasks.requests")
     def test_fetch_exchange_rate_api_limit_exceeded(self, requests_mock):

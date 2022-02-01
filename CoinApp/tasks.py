@@ -13,6 +13,10 @@ class ApiLimitReached(RuntimeError):
     pass
 
 
+class InvalidApiKey(ValueError):
+    pass
+
+
 @shared_task
 def fetch_exchange_rate():
     from_currency = "BTC"
@@ -29,6 +33,8 @@ def fetch_exchange_rate():
 
     if "Note" in data:
         raise ApiLimitReached(data["Note"])
+    elif "Error Message" in data:
+        raise InvalidApiKey(data["Error Message"])
     rate = ExchangeRate()
     data = data["Realtime Currency Exchange Rate"]
     rate.from_currency = data["1. From_Currency Code"]

@@ -21,5 +21,8 @@ class ExchangeRate(models.Model):
     bid_price = models.FloatField(null=False, blank=False)
     ask_price = models.FloatField(null=False, blank=False)
 
+    class Meta:
+        ordering = ["-timestamp", "-alphavantage_timestamp"]
+
     def __str__(self):
         return f"{self.from_currency}/{self.to_currency}: {self.rate}"
