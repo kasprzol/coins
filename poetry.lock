@@ -200,6 +200,14 @@ django = ">=2.2"
 pytz = "*"
 
 [[package]]
+name = "djangorestframework-api-key"
+version = "2.1.0"
+description = "API key permissions for the Django REST Framework"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "gunicorn"
 version = "20.1.0"
 description = "WSGI HTTP Server for UNIX"
@@ -396,7 +404,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "23a8e387df018c8565f013564c007d7560752b5c969127b5eaaa89b491694d0a"
+content-hash = "9d7a0b3096daf3e537225e05c85c862ea9840c33bfc11959cf27a573851cf8ca"
 
 [metadata.files]
 amqp = [
@@ -454,6 +462,10 @@ django = [
 djangorestframework = [
     {file = "djangorestframework-3.13.1-py3-none-any.whl", hash = "sha256:24c4bf58ed7e85d1fe4ba250ab2da926d263cd57d64b03e8dcef0ac683f8b1aa"},
     {file = "djangorestframework-3.13.1.tar.gz", hash = "sha256:0c33407ce23acc68eca2a6e46424b008c9c02eceb8cf18581921d0092bc1f2ee"},
+]
+djangorestframework-api-key = [
+    {file = "djangorestframework-api-key-2.1.0.tar.gz", hash = "sha256:38dfb9f635060d62898cb0ca18d03f9a9c7c7ca1dba456dcce7f4ec05d848c36"},
+    {file = "djangorestframework_api_key-2.1.0-py3-none-any.whl", hash = "sha256:ccccb6fede8597b7f47b32d45bb2a073a7888b07c01ceea81df101c7795c3c56"},
 ]
 gunicorn = [
     {file = "gunicorn-20.1.0-py3-none-any.whl", hash = "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e"},
