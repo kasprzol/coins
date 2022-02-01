@@ -138,6 +138,6 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 TASK_QUEUE_HOST = "queue"
-TASK_QUEUE_URL = f"redis://{TASK_QUEUE_HOST}/"
-TASK_RESULT_BACKEND = TASK_QUEUE_URL
+CELERY_BROKER_URL = f"redis://{TASK_QUEUE_HOST}/"
+TASK_RESULT_BACKEND = CELERY_BROKER_URL
 ALPHAVANTAGE_API_KEY = os.environ["alphavantage_api_key"]

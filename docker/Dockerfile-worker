@@ -1,9 +1,10 @@
 FROM python:3.10
 
+RUN python3 -m pip install -U pip wheel
 RUN mkdir -p /srv/coins
 WORKDIR /srv/coins
 COPY .. /srv/coins
 RUN pip install .
 
-ENTRYPOINT ["celery", "-A", "CoinApp.tasks worker", "--loglevel=INFO"]
+ENTRYPOINT ["celery", "-A", "CoinApp", "worker", "--loglevel=INFO"]
 
