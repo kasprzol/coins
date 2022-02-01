@@ -1,10 +1,13 @@
 FROM python:3.10
 
-RUN python3 -m pip install -U pip wheel
+RUN python3 -m pip install -U pip wheel poetry
 RUN mkdir -p /srv/coins
 WORKDIR /srv/coins
+COPY ../poetry.lock /srv/coins
+COPY ../pyproject.toml /srv/coins
+RUN poetry install --no-root
 COPY .. /srv/coins
-RUN pip install .
+RUN poetry install
 
 ENTRYPOINT ["/srv/coins/docker/webapp_entrypoint.sh"]
 
