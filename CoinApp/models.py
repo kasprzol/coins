@@ -1,12 +1,19 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 
 class ExchangeRate(models.Model):
     from_currency = models.CharField(
-        max_length=200, null=False, blank=False, min_length=2
+        max_length=200,
+        null=False,
+        blank=False,
+        validators=(MinLengthValidator(limit_value=2),),
     )
     to_currency = models.CharField(
-        max_length=200, null=False, blank=False, min_length=2
+        max_length=200,
+        null=False,
+        blank=False,
+        validators=(MinLengthValidator(limit_value=2),),
     )
     timestamp = models.DateTimeField(auto_now_add=True, null=False, blank=False)
     alphavantage_timestamp = models.DateTimeField(null=False, blank=False)
