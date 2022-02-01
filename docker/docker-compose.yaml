@@ -38,6 +38,7 @@ services:
       - coins_db_password=qwerty
       - coins_db_port=5432
       - alphavantage_api_key=$alphavantage_api_key
+      - django_secret_key=$django_secret_key
     ports:
       - target: 8000
         published: 8000
@@ -63,6 +64,7 @@ services:
       - coins_db_password=qwerty
       - coins_db_port=5432
       - alphavantage_api_key=$alphavantage_api_key
+      - django_secret_key=$django_secret_key
 #    volumes:
 #      - type: bind
 #        source: ..
