@@ -4,11 +4,6 @@ services:
   queue:
     image: redis
 
-#  scheduler:
-#    image: celery
-#    depends_on:
-#      - queue
-
   db:
     image: postgres
     environment:
@@ -29,7 +24,6 @@ services:
     depends_on:
       - db
       - queue
-#      - scheduler
     environment:
       - deployment=production
       - coins_db_host=db
@@ -42,10 +36,6 @@ services:
     ports:
       - target: 8000
         published: 8000
-#    volumes:
-#      - type: bind
-#        source: ..
-#        target: /srv/coins
 
   worker:
     image: worker
@@ -65,7 +55,20 @@ services:
       - coins_db_port=5432
       - alphavantage_api_key=$alphavantage_api_key
       - django_secret_key=$django_secret_key
-#    volumes:
-#      - type: bind
-#        source: ..
-#        target: /srv/coins
+  scheduler:
+    image: scheduler
+    build:
+      dockerfile: docker/Dockerfile-scheduler
+      context: ..
+    depends_on:
+      - queue
+    environment:
+      - deployment=production
+      - DJANGO_SETTINGS_MODULE=coins.settings
+      - coins_db_host=db
+      - coins_db_name=coins_db
+      - coins_db_user=foobar
+      - coins_db_password=qwerty
+      - coins_db_port=5432
+      - alphavantage_api_key=$alphavantage_api_key
+      - django_secret_key=$django_secret_key
