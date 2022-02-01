@@ -19,6 +19,9 @@ class InvalidApiKey(ValueError):
 
 @shared_task
 def fetch_exchange_rate():
+    if not settings.ALPHAVANTAGE_API_KEY:
+        raise InvalidApiKey("You must set your Alphavantage API key in settings!")
+
     from_currency = "BTC"
     to_currency = "USD"
     url = (
