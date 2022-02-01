@@ -32,7 +32,7 @@ def fetch_exchange_rate():
     response = requests.get(url)
     response.raise_for_status()
     data = response.json()
-    logger.warning(f"Received response: {data}")
+    logger.debug(f"Received response: {data}")
 
     if "Note" in data:
         raise ApiLimitReached(data["Note"])
