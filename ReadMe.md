@@ -26,4 +26,4 @@ login and create a API key.
 
 To perform a REST API request add the authorization header:
 
-    Authorization:Api-Key <YOUR-KEY>
+    Authorization: Api-Key <YOUR-KEY>

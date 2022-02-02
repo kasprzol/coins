@@ -8,7 +8,7 @@ from CoinApp.tasks import ApiLimitReached, InvalidApiKey, fetch_exchange_rate
 
 
 @override_settings(ALPHAVANTAGE_API_KEY="qwerty")
-class Test(TestCase):
+class TestTasks(TestCase):
     @patch("CoinApp.tasks.requests")
     def test_fetch_exchange_rate(self, requests_mock):
         mock_response = Mock()
