@@ -22,7 +22,11 @@ The website creates a super user account on start. It's credentials are:
 # Generating API keys
 
 Once you have the docker compose environment set up go to the [admin page](http://localhost:8000/admin/rest_framework_api_key/apikey/),
-login and create a API key.
+login and create an API key.
+
+![](apikey.png)
+
+# Performing API requests
 
 To perform a REST API request add the authorization header:
 
