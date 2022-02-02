@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 
 from CoinApp.routers import router
@@ -22,3 +23,5 @@ urlpatterns = [
     path("api/v1/", include(router.urls)),
     path("admin/", admin.site.urls),
 ]
+# NOTE: in real app static files would be handled by separate web server like nginx or apache.
+urlpatterns += staticfiles_urlpatterns()
